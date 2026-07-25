@@ -34,8 +34,8 @@ class ImageLoaderBitmapSupport {
     private static final long TMP_FILE_TTL_MS = 20L * 60L * 1000L;
 
     private static final String IMAGE_ACCEPT_HEADER = "image/*,*/*;q=0.8";
-    private static final int DEFAULT_CONNECT_TIMEOUT_MS = 12000;
-    private static final int DEFAULT_READ_TIMEOUT_MS = 20000;
+    private static final int DEFAULT_CONNECT_TIMEOUT_MS = 8000;
+    private static final int DEFAULT_READ_TIMEOUT_MS = 15000;
     private static final int DATA_SERVER_FALLBACK_TIMEOUT_MS = 4000;
     private static final Object CACHE_LOCK = new Object();
     private static final Object FILE_LOCK_GUARD = new Object();

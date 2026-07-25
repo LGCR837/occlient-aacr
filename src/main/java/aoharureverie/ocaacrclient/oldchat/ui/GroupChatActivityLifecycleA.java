@@ -280,9 +280,9 @@ abstract class GroupChatActivityLifecycleA extends GroupChatActivityLifecycleB {
         chatBackground = findViewByIdCompat(R.id.chat_background);
         backgroundHelper = new ChatBackgroundHelper(this, chatBackground, groupId, true);
         applyChatBackground();
-        // 进入群聊仅同步成员名称/称号/角色，用于消息区显示用户名；不预取全员头像。
+        // 进入群聊同步成员名称/称号/角色/头像，用于消息区显示用户名和头像。
         manageApi = new GroupManageApi();
-        GroupMemberLoader.loadMemberNames(this, token, groupId, adapter, nameMap, titleMap, roleMap,
+        GroupMemberLoader.loadMembers(this, token, groupId, adapter, nameMap, avatarMap, titleMap, roleMap,
                 mentionMembers, new Runnable() {
                     @Override
                     public void run() {

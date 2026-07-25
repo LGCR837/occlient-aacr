@@ -20,8 +20,8 @@ public class ImageLoader {
     private static final int AVATAR_MAX_BYTES = 16 * 1024;
 
     // 使用有限的线程池，避免同时加载太多图片
-    // 最多 4 个线程用于图片加载
-    private static final ExecutorService EXECUTOR = Executors.newFixedThreadPool(4);
+    // 最多 8 个线程用于图片加载，群聊中需要更多并发
+    private static final ExecutorService EXECUTOR = Executors.newFixedThreadPool(8);
     private static final Handler MAIN_HANDLER = new Handler(Looper.getMainLooper());
 
     public static void load(ImageView view, String url) {
