@@ -156,56 +156,85 @@ public class UpdateManager {
             }
             try {
                 String urlStr = info.apkName;
-                URL url = new URL(urlStr);
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                conn.setConnectTimeout(8000);
-                conn.setReadTimeout(15000);
-                int respCode = conn.getResponseCode();
-                // 老设备SSL不支持，尝试http
-                if (respCode != 200 && urlStr.startsWith("https://")) {
-                    conn.disconnect();
-                    urlStr = "http://" + urlStr.substring(8);
-                    url = new URL(urlStr);
-                    conn = (HttpURLConnection) url.openConnection();
-                    conn.setConnectTimeout(8000);
-                    conn.setReadTimeout(15000);
-                    respCode = conn.getResponseCode();
-                }
-                if (respCode != 200) {
-                    return null;
-                }
-                int contentLength = conn.getContentLength();
-                if (contentLength > 0) {
-                    publishProgress(0);
-                }
-                File dir = activity.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
-                if (dir == null) {
-                    dir = activity.getCacheDir();
-                }
-                if (dir == null) {
-                    return null;
-                }
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
-                File outFile = new File(dir, info.apkName);
-                BufferedInputStream in = new BufferedInputStream(conn.getInputStream());
-                FileOutputStream out = new FileOutputStream(outFile);
-                byte[] buffer = new byte[8192];
-                int count;
-                int total = 0;
-                while ((count = in.read(buffer)) != -1) {
-                    out.write(buffer, 0, count);
-                    total += count;
-                    if (contentLength > 0) {
-                        int percent = (int) (total * 100f / contentLength);
-                        publishProgress(percent);
+                // 处理最多5次重定向
+                for (int redirectCount = 0; redirectCount <= 5; redirectCount++) {
+                    URL url = new URL(urlStr);
+                    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                    conn.setConnectTimeout(15000);
+                    conn.setReadTimeout(30000);
+                    conn.setInstanceFollowRedirects(false);
+
+                    int respCode = conn.getResponseCode();
+
+                    // 处理重定向
+                    if (respCode == HttpURLConnection.HTTP_MOVED_PERM
+                            || respCode == HttpURLConnection.HTTP_MOVED_TEMP
+                            || respCode == 307 || respCode == 308) {
+                        String location = conn.getHeaderField("Location");
+                        conn.disconnect();
+                        if (location != null && !location.isEmpty()) {
+                            // 处理相对URL
+                            if (location.startsWith("/")) {
+                                URL currentUrl = new URL(urlStr);
+                                String protocol = currentUrl.getProtocol();
+                                String host = currentUrl.getHost();
+                                int port = currentUrl.getPort();
+                                location = protocol + "://" + host + (port > 0 ? ":" + port : "") + location;
+                            }
+                            urlStr = location;
+                            continue;
+                        }
+                        return null;
                     }
+
+                    // 老设备SSL不支持，尝试http
+                    if (respCode != 200 && urlStr.startsWith("https://")) {
+                        conn.disconnect();
+                        urlStr = "http://" + urlStr.substring(8);
+                        continue;
+                    }
+
+                    if (respCode != 200) {
+                        conn.disconnect();
+                        return null;
+                    }
+
+                    int contentLength = conn.getContentLength();
+                    if (contentLength > 0) {
+                        publishProgress(0);
+                    }
+                    File dir = activity.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
+                    if (dir == null) {
+                        dir = activity.getCacheDir();
+                    }
+                    if (dir == null) {
+                        conn.disconnect();
+                        return null;
+                    }
+                    if (!dir.exists()) {
+                        dir.mkdirs();
+                    }
+                    File outFile = new File(dir, "update.apk");
+                    BufferedInputStream in = new BufferedInputStream(conn.getInputStream());
+                    FileOutputStream out = new FileOutputStream(outFile);
+                    byte[] buffer = new byte[8192];
+                    int count;
+                    int total = 0;
+                    while ((count = in.read(buffer)) != -1) {
+                        out.write(buffer, 0, count);
+                        total += count;
+                        if (contentLength > 0) {
+                            int percent = (int) (total * 100f / contentLength);
+                            publishProgress(percent);
+                        }
+                    }
+                    out.flush();
+                    out.close();
+                    in.close();
+                    conn.disconnect();
+                    return outFile;
                 }
-                out.flush();
-                out.close();
-                in.close();
-                return outFile;
+                return null;
             } catch (Exception e) {
                 return null;
             }
@@ -274,50 +303,75 @@ public class UpdateManager {
     }
 
     private static UpdateInfo fetchUpdateInfo() {
-        try {
-            String urlStr = "http://crmoment.ccwu.cc/oldchataacrversion.json";
-            URL url = new URL(urlStr);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setConnectTimeout(8000);
-            conn.setReadTimeout(15000);
-            if (conn.getResponseCode() != 200) {
-                // 老设备SSL不支持，尝试http
-                if (urlStr.startsWith("https://")) {
-                    urlStr = "http://" + urlStr.substring(8);
-                    url = new URL(urlStr);
-                    conn.disconnect();
-                    conn = (HttpURLConnection) url.openConnection();
-                    conn.setConnectTimeout(8000);
-                    conn.setReadTimeout(15000);
-                    if (conn.getResponseCode() != 200) {
-                        return null;
+        String urlStr = "http://crmoment.ccwu.cc/oldchataacrversion.json";
+        // 先尝试HTTP，如果失败再尝试HTTPS
+        String[] urls = {urlStr, urlStr.replace("http://", "https://")};
+        for (String tryUrl : urls) {
+            try {
+                URL url = new URL(tryUrl);
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setConnectTimeout(10000);
+                conn.setReadTimeout(15000);
+                conn.setInstanceFollowRedirects(false);
+                int code = conn.getResponseCode();
+
+                // 处理重定向
+                for (int i = 0; i < 3; i++) {
+                    if (code == HttpURLConnection.HTTP_MOVED_PERM
+                            || code == HttpURLConnection.HTTP_MOVED_TEMP
+                            || code == 307 || code == 308) {
+                        String location = conn.getHeaderField("Location");
+                        conn.disconnect();
+                        if (location == null || location.isEmpty()) {
+                            break;
+                        }
+                        if (location.startsWith("/")) {
+                            URL currentUrl = new URL(tryUrl);
+                            location = currentUrl.getProtocol() + "://" + currentUrl.getHost()
+                                    + (currentUrl.getPort() > 0 ? ":" + currentUrl.getPort() : "") + location;
+                        }
+                        tryUrl = location;
+                        url = new URL(tryUrl);
+                        conn = (HttpURLConnection) url.openConnection();
+                        conn.setConnectTimeout(10000);
+                        conn.setReadTimeout(15000);
+                        conn.setInstanceFollowRedirects(false);
+                        code = conn.getResponseCode();
+                        continue;
                     }
-                } else {
-                    return null;
+                    break;
                 }
+
+                if (code != 200) {
+                    conn.disconnect();
+                    continue;
+                }
+
+                byte[] buf = new byte[4096];
+                StringBuilder sb = new StringBuilder();
+                BufferedInputStream in = new BufferedInputStream(conn.getInputStream());
+                int read;
+                while ((read = in.read(buf)) != -1) {
+                    sb.append(new String(buf, 0, read, "UTF-8"));
+                }
+                in.close();
+                conn.disconnect();
+                JSONObject obj = new JSONObject(sb.toString());
+                UpdateInfo info = new UpdateInfo();
+                info.versionCode = obj.optInt("version_code", 0);
+                info.versionName = obj.optString("version_name", "");
+                info.apkName = obj.optString("apk", "");
+                info.notes = obj.optString("notes", "");
+                info.force = obj.optBoolean("force", false);
+                if (info.versionCode <= 0 || info.apkName.length() == 0) {
+                    continue;
+                }
+                return info;
+            } catch (Exception e) {
+                continue;
             }
-            byte[] buf = new byte[4096];
-            StringBuilder sb = new StringBuilder();
-            BufferedInputStream in = new BufferedInputStream(conn.getInputStream());
-            int read;
-            while ((read = in.read(buf)) != -1) {
-                sb.append(new String(buf, 0, read, "UTF-8"));
-            }
-            in.close();
-            JSONObject obj = new JSONObject(sb.toString());
-            UpdateInfo info = new UpdateInfo();
-            info.versionCode = obj.optInt("version_code", 0);
-            info.versionName = obj.optString("version_name", "");
-            info.apkName = obj.optString("apk", "");
-            info.notes = obj.optString("notes", "");
-            info.force = obj.optBoolean("force", false);
-            if (info.versionCode <= 0 || info.apkName.length() == 0) {
-                return null;
-            }
-            return info;
-        } catch (Exception e) {
-            return null;
         }
+        return null;
     }
 
     private static String getBaseUrl() {

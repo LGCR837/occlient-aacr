@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MessagePayload {
-    public static final int VERSION = 1;
+    public static final int VERSION = 2;
     public static final int VERSION_MAX = 10;
 
     public static class Quote {
@@ -26,6 +26,7 @@ public class MessagePayload {
 
     public String text;
     public String mediaKind;
+    public String voiceText;
     public Quote quote;
     public List<Mention> mentions;
 
@@ -51,6 +52,7 @@ public class MessagePayload {
             }
             payload.text = obj.optString("text", "");
             payload.mediaKind = obj.optString("media_kind", "");
+            payload.voiceText = obj.optString("voice_text", "");
             JSONObject qObj = obj.optJSONObject("quote");
             if (qObj != null) {
                 Quote q = new Quote();
@@ -92,6 +94,9 @@ public class MessagePayload {
             obj.put("text", text == null ? "" : text);
             if (mediaKind != null && !mediaKind.isEmpty()) {
                 obj.put("media_kind", mediaKind);
+            }
+            if (voiceText != null && !voiceText.isEmpty()) {
+                obj.put("voice_text", voiceText);
             }
             if (quote != null) {
                 JSONObject qObj = new JSONObject();

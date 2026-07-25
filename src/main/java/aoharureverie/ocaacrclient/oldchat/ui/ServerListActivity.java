@@ -97,6 +97,8 @@ public class ServerListActivity extends BaseActivity {
             }
 
             private String fetchWithRedirects(String urlStr, int maxRedirects) throws Exception {
+                boolean triedHttps = false;
+                boolean triedHttp = false;
                 for (int i = 0; i <= maxRedirects; i++) {
                     HttpURLConnection conn = null;
                     try {
@@ -108,6 +110,7 @@ public class ServerListActivity extends BaseActivity {
                         conn.setRequestProperty("Accept", "application/json");
                         conn.setRequestProperty("Accept-Encoding", "gzip");
                         conn.setInstanceFollowRedirects(false);
+                        conn.setFollowRedirects(false);
 
                         int code = conn.getResponseCode();
 
@@ -115,7 +118,19 @@ public class ServerListActivity extends BaseActivity {
                                 || code == HttpURLConnection.HTTP_MOVED_TEMP
                                 || code == 307 || code == 308) {
                             String location = conn.getHeaderField("Location");
-                            if (location != null) {
+                            if (location != null && !location.isEmpty()) {
+                                // 处理相对URL
+                                if (location.startsWith("/")) {
+                                    String protocol = url.getProtocol();
+                                    String host = url.getHost();
+                                    int port = url.getPort();
+                                    location = protocol + "://" + host + (port > 0 ? ":" + port : "") + location;
+                                }
+                                // 检测循环重定向
+                                if (location.equals(urlStr)) {
+                                    errorMessage = "重定向循环";
+                                    return null;
+                                }
                                 urlStr = location;
                                 continue;
                             }
@@ -141,9 +156,37 @@ public class ServerListActivity extends BaseActivity {
                         reader.close();
                         return sb.toString();
                     } catch (javax.net.ssl.SSLException e) {
-                        // 老设备不支持新版SSL，尝试将https降级为http
-                        if (urlStr.startsWith("https://")) {
+                        // 老设备不支持新版SSL
+                        // 如果当前是HTTPS且还没试过HTTP，降级为HTTP
+                        if (urlStr.startsWith("https://") && !triedHttp) {
+                            triedHttp = true;
                             urlStr = "http://" + urlStr.substring(8);
+                            continue;
+                        }
+                        // 如果当前是HTTP且还没试过HTTPS，升级为HTTPS
+                        if (urlStr.startsWith("http://") && !triedHttps) {
+                            triedHttps = true;
+                            urlStr = "https://" + urlStr.substring(7);
+                            continue;
+                        }
+                        errorMessage = "网络连接失败";
+                        return null;
+                    } catch (java.net.SocketTimeoutException e) {
+                        errorMessage = "连接超时";
+                        return null;
+                    } catch (java.net.UnknownHostException e) {
+                        errorMessage = "无法解析服务器地址";
+                        return null;
+                    } catch (Exception e) {
+                        // 其他异常：如果还没试过http/https切换，尝试
+                        if (urlStr.startsWith("https://") && !triedHttp) {
+                            triedHttp = true;
+                            urlStr = "http://" + urlStr.substring(8);
+                            continue;
+                        }
+                        if (urlStr.startsWith("http://") && !triedHttps) {
+                            triedHttps = true;
+                            urlStr = "https://" + urlStr.substring(7);
                             continue;
                         }
                         throw e;
