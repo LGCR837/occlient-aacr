@@ -148,11 +148,15 @@ public class AccountListActivity extends BaseActivity {
                 public void onSuccess(String response) {
                     try {
                         JSONObject resp = new JSONObject(response);
-                        String accessToken = resp.getString("access_token");
-                        String refreshToken = resp.getString("refresh_token");
-                        JSONObject user = resp.getJSONObject("user");
-                        String userId = user.getString("id");
-                        String myUID = user.getString("uid");
+                        String accessToken = resp.optString("access_token", "");
+                        String refreshToken = resp.optString("refresh_token", "");
+                        JSONObject user = resp.optJSONObject("user");
+                        String userId = user != null ? user.optString("id", "") : "";
+                        String myUID = user != null ? user.optString("uid", "") : "";
+                        if (accessToken.isEmpty()) {
+                            Toast.makeText(AccountListActivity.this, "登录失败: 缺少access_token", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
                         clearCachesOnAccountSwitch(myUID);
                         saveToken(accessToken, refreshToken, userId, myUID);

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class MessagePayload {
     public static final int VERSION = 1;
-    public static final int VERSION_MAX = 2;
+    public static final int VERSION_MAX = 10;
 
     public static class Quote {
         public String id;
@@ -46,7 +46,7 @@ public class MessagePayload {
         try {
             JSONObject obj = new JSONObject(trimmed);
             int v = obj.optInt("v", 0);
-            if (v < 1 || v > VERSION_MAX) {
+            if (v < 0 || v > VERSION_MAX) {
                 return payload;
             }
             payload.text = obj.optString("text", "");
