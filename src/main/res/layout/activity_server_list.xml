@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/colorBackground"
+        android:paddingLeft="4dp"
+        android:paddingRight="16dp">
+
+        <Button
+            android:id="@+id/btnBack"
+            style="@style/TextLinkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:minWidth="0dp"
+            android:background="@null"
+            android:text="&lt; 返回"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/server_list_title"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:minWidth="48dp" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pbLoading"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/lvServers"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
+            android:listSelector="@android:color/transparent"
+            android:overScrollMode="never"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp" />
+
+        <TextView
+            android:id="@+id/tvEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/server_list_empty"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="15sp"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+</LinearLayout>

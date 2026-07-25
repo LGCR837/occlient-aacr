@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:indeterminate="true"
+        android:visibility="gone"
+        style="@android:style/Widget.ProgressBar.Horizontal" />
+
+    <FrameLayout 
+        android:id="@+id/statusContainer"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="@color/colorDanger"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="无法连接到服务器，点击重试"
+            android:textColor="@color/color_on_primary"
+            android:textSize="13sp" />
+    </FrameLayout>
+</FrameLayout>

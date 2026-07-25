@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/color_surface">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="10dp"
+        android:gravity="top">
+
+        <aoharureverie.ocaacrclient.oldchat.ui.widget.RoundedImageView
+            android:id="@+id/ivMomentAvatar"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:background="@drawable/bg_avatar_round"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            app:cornerRadius="4dp"
+            app:srcCompat="@drawable/ic_avatar_placeholder" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvMomentName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/colorOwnerTag"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvMomentTitleBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:background="@drawable/bg_badge_title"
+                    android:ellipsize="end"
+                    android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:maxWidth="84dp"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:paddingTop="1dp"
+                    android:paddingBottom="1dp"
+                    android:singleLine="true"
+                    android:text="头衔"
+                    android:textColor="@color/color_on_primary"
+                    android:textSize="10sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvMomentBody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:lineSpacingExtra="1dp"
+                android:textColor="@color/color_text_primary"
+                android:textSize="15sp" />
+
+            <FrameLayout
+                android:id="@+id/flMomentImage"
+                android:layout_width="210dp"
+                android:layout_height="210dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/color_divider"
+                android:visibility="gone">
+
+                <aoharureverie.ocaacrclient.oldchat.ui.widget.RoundedImageView
+                    android:id="@+id/ivMomentImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@null"
+                    android:scaleType="centerCrop"
+                    app:cornerRadius="2dp" />
+
+                <TextView
+                    android:id="@+id/tvMomentImageCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:layout_margin="6dp"
+                    android:background="@drawable/bg_unread_badge"
+                    android:contentDescription="@null"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="6dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textColor="@color/color_on_primary"
+                    android:textSize="11sp"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvMomentTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/color_text_secondary"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:background="@drawable/moment_action_bg"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <LinearLayout
+                        android:id="@+id/btnMomentLike"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+
+                        <ImageView
+                            android:id="@+id/ivLikeIcon"
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:contentDescription="@null"
+                            android:tint="@color/color_text_secondary"
+                            app:srcCompat="@drawable/ic_like" />
+
+                        <TextView
+                            android:id="@+id/tvLikeCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:text="赞"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="14dp"
+                        android:background="@color/color_divider" />
+
+                    <LinearLayout
+                        android:id="@+id/btnMomentComment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:contentDescription="@null"
+                            android:tint="@color/color_text_secondary"
+                            app:srcCompat="@drawable/ic_comment" />
+
+                        <TextView
+                            android:id="@+id/tvCommentCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="4dp"
+                            android:text="评论"
+                            android:textColor="@color/color_text_secondary"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvMomentCounts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="12sp"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="64dp"
+        android:background="@color/color_divider" />
+
+</LinearLayout>

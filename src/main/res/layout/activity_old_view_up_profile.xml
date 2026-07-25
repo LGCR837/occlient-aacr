@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/color_surface"
+        android:paddingLeft="8dp"
+        android:paddingRight="12dp">
+
+        <ImageView
+            android:id="@+id/btnOldViewUpProfileBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:src="@android:drawable/ic_media_previous"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/tvOldViewUpProfileTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            android:text="@string/old_view_up_profile_title"
+            android:textColor="@color/color_text_primary"
+            android:textSize="18sp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pbOldViewUpProfileLoading"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/layoutOldViewUpProfileInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bg_profile_item"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="12dp"
+        android:paddingTop="10dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvOldViewUpProfileName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/old_view_up_profile_title"
+                android:textColor="@color/color_text_primary"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/tvOldViewUpProfileUid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/color_text_secondary"
+                android:textSize="12sp"
+                android:maxLines="1"
+                android:ellipsize="end" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnOldViewUpProfileFollow"
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/bg_primary_button"
+            android:gravity="center"
+            android:text="@string/old_view_up_follow"
+            android:textColor="@color/color_on_primary"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvOldViewUpProfileEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/old_view_up_profile_load_failed"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="13sp"
+        android:visibility="gone" />
+
+    <WebView
+        android:id="@+id/wvOldViewUpProfile"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

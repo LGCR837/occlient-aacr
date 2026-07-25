@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_background">
+
+    <LinearLayout
+        android:id="@+id/discover_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:background="@color/color_surface">
+
+        <TextView
+            android:id="@+id/tvDiscoverTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发现"
+            android:textColor="@color/color_text_primary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:overScrollMode="ifContentScrolls">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/color_background">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:background="@color/color_background" />
+
+            <LinearLayout
+                android:id="@+id/btnDiscoverMoments"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_flat_row_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:srcCompat="@drawable/ic_menu_slideshow"
+                    android:tint="@color/color_text_secondary" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_weight="1"
+                    android:text="动态"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="15sp" />
+
+                <View
+                    android:id="@+id/viewDiscoverMomentsDot"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:layout_marginRight="6dp"
+                    android:background="@drawable/badge_red_dot"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    app:srcCompat="@drawable/ic_chevron_right"
+                    android:tint="@color/color_text_secondary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnDiscoverEmojiPlaza"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_flat_row_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    app:srcCompat="@drawable/ic_action_emoji"
+                    android:tint="@color/color_text_secondary" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_weight="1"
+                    android:text="表情包广场"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    app:srcCompat="@drawable/ic_chevron_right"
+                    android:tint="@color/color_text_secondary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnDiscoverMusicPlaza"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_flat_row_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_btn_speak_now"
+                    android:tint="@color/color_text_secondary" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_weight="1"
+                    android:text="音乐广场"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    app:srcCompat="@drawable/ic_chevron_right"
+                    android:tint="@color/color_text_secondary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnDiscoverOldView"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_flat_row_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_menu_slideshow"
+                    android:tint="@color/color_text_secondary" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_weight="1"
+                    android:text="@string/discover_old_view"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    app:srcCompat="@drawable/ic_chevron_right"
+                    android:tint="@color/color_text_secondary" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:background="@color/color_background" />
+
+            <LinearLayout
+                android:id="@+id/btnDiscoverProgress"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_flat_row_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:tint="@color/color_text_secondary"
+                    app:srcCompat="@drawable/ic_feedback" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_weight="1"
+                    android:text="反馈/举报进度"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    app:srcCompat="@drawable/ic_chevron_right"
+                    android:tint="@color/color_text_secondary" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/btnDiscoverCheckIn"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_flat_row_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:tint="@color/color_text_secondary"
+                    android:src="@android:drawable/ic_menu_my_calendar" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_weight="1"
+                    android:text="每日签到（+10旧币 +50信誉）"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    app:srcCompat="@drawable/ic_chevron_right"
+                    android:tint="@color/color_text_secondary" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnDiscoverPublicCourt"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:background="@drawable/bg_flat_row_selector"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:tint="@color/color_text_secondary"
+                    android:src="@android:drawable/ic_dialog_info" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_weight="1"
+                    android:text="公开法庭"
+                    android:textColor="@color/color_text_primary"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    app:srcCompat="@drawable/ic_chevron_right"
+                    android:tint="@color/color_text_secondary" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="@color/color_background" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

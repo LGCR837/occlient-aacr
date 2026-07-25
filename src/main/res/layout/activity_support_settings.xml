@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_background"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_surface"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="12dp">
+
+            <ImageView
+                android:id="@+id/btnSupportSettingsBack"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:padding="6dp"
+                android:tint="@color/color_text_primary"
+                app:srcCompat="@android:drawable/ic_media_previous" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="帮助与支持"
+                android:textColor="@color/color_text_primary"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:background="@color/color_background" />
+
+        <LinearLayout
+            android:id="@+id/btnCheckUpdate"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/bg_flat_row_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:tint="@color/color_text_secondary"
+                app:srcCompat="@drawable/ic_download" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_weight="1"
+                android:text="检查更新"
+                android:textColor="@color/color_text_primary"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:tint="@color/color_text_secondary"
+                app:srcCompat="@drawable/ic_chevron_right" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnFeedback"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/bg_flat_row_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:tint="@color/color_text_secondary"
+                app:srcCompat="@drawable/ic_feedback" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_weight="1"
+                android:text="问题反馈"
+                android:textColor="@color/color_text_primary"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:tint="@color/color_text_secondary"
+                app:srcCompat="@drawable/ic_chevron_right" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnPrivacyPolicy"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/bg_flat_row_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:tint="@color/color_text_secondary"
+                app:srcCompat="@drawable/ic_document" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_weight="1"
+                android:text="隐私协议"
+                android:textColor="@color/color_text_primary"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:tint="@color/color_text_secondary"
+                app:srcCompat="@drawable/ic_chevron_right" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnAboutApp"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/bg_flat_row_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:tint="@color/color_text_secondary"
+                app:srcCompat="@drawable/ic_document" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_weight="1"
+                android:text="关于旧聊"
+                android:textColor="@color/color_text_primary"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:tint="@color/color_text_secondary"
+                app:srcCompat="@drawable/ic_chevron_right" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:background="@color/color_background" />
+    </LinearLayout>
+</ScrollView>

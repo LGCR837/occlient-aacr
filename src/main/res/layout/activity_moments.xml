@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/color_surface"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <ImageView
+            android:id="@+id/btnMomentsBack"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/moment_action_transparent"
+            android:contentDescription="@null"
+            android:padding="6dp"
+            android:src="@android:drawable/ic_media_previous"
+            android:tint="@color/color_text_primary" />
+
+        <TextView
+            android:id="@+id/tvMomentsTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="1"
+            android:text="朋友圈"
+            android:textColor="@color/color_text_primary"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <FrameLayout
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginRight="6dp">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/btnMomentsNotice"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/moment_action_transparent"
+                android:contentDescription="@null"
+                android:padding="5dp"
+                android:tint="@color/color_text_primary"
+                app:srcCompat="@drawable/ic_notification" />
+
+            <View
+                android:id="@+id/viewMomentsNoticeDot"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_gravity="top|right"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/bg_unread_badge"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/btnMomentsAdd"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:background="@drawable/moment_action_transparent"
+            android:contentDescription="@null"
+            android:padding="5dp"
+            android:tint="@color/color_text_primary"
+            app:srcCompat="@drawable/icon_chat_plus" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_divider" />
+
+    <ProgressBar
+        android:id="@+id/pbMomentsLoading"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/color_divider"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ListView
+            android:id="@+id/lvMoments"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_background"
+            android:cacheColorHint="@color/color_background"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
+            android:listSelector="@android:color/transparent"
+            android:overScrollMode="never"
+            android:paddingTop="0dp"
+            android:paddingBottom="10dp" />
+
+        <TextView
+            android:id="@+id/tvMomentsEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="还没有动态"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="14sp"
+            android:visibility="gone" />
+    </FrameLayout>
+
+</LinearLayout>

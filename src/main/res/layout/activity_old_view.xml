@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/color_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/color_surface"
+        android:paddingLeft="8dp"
+        android:paddingRight="12dp">
+
+        <ImageView
+            android:id="@+id/btnOldViewBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:src="@android:drawable/ic_media_previous"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/tvOldViewTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="8dp"
+            android:text="@string/old_view_title"
+            android:textColor="@color/color_text_primary"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/btnOldViewSearch"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="4dp"
+            android:padding="8dp"
+            android:src="@android:drawable/ic_menu_search"
+            android:contentDescription="@null" />
+
+        <ImageView
+            android:id="@+id/btnOldViewMenu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:padding="8dp"
+            android:contentDescription="@null"
+            android:src="@android:drawable/ic_menu_more" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/panelOldViewQuick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="12dp"
+        android:orientation="vertical"
+        android:background="@drawable/bg_profile_item"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/old_view_quick_title"
+            android:textColor="@color/color_text_primary"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@string/old_view_quick_hint"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="11sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btnOldViewQuickSearch"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/bg_flat_row_selector"
+                android:text="@string/old_view_action_search"
+                android:textColor="@color/color_text_primary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/btnOldViewQuickHistory"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/bg_flat_row_selector"
+                android:text="@string/old_view_action_history"
+                android:textColor="@color/color_text_primary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/btnOldViewQuickFavorites"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@drawable/bg_flat_row_selector"
+                android:text="@string/old_view_action_favorites"
+                android:textColor="@color/color_text_primary"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/panelOldViewLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="vertical"
+        android:background="@drawable/bg_profile_item"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp">
+
+        <TextView
+            android:id="@+id/tvOldViewLoginTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/old_view_login_title"
+            android:textColor="@color/color_text_primary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/ivOldViewQr"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:scaleType="centerInside"
+            android:contentDescription="@null"
+            android:background="@color/color_surface" />
+
+        <TextView
+            android:id="@+id/tvOldViewStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/old_view_status_fetch_qr"
+            android:textColor="@color/color_text_secondary"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/btnOldViewRefresh"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginTop="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="@string/old_view_action_refresh_qr"
+            android:textSize="13sp"
+            android:background="@drawable/bg_primary_button"
+            android:textColor="@color/color_on_primary" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/pbOldViewLoading"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvOldViewEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="@string/old_view_empty"
+        android:textColor="@color/color_text_secondary"
+        android:textSize="13sp"
+        android:visibility="gone" />
+
+    <ListView
+        android:id="@+id/lvOldViewVideos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="8dp"
+        android:listSelector="@android:color/transparent"
+        android:overScrollMode="never"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="12dp" />
+
+</LinearLayout>
